@@ -7,7 +7,7 @@ import { StatusEnum } from 'src/statuses/statuses.enum';
 import * as crypto from 'crypto';
 import { plainToClass } from 'class-transformer';
 import { Status } from 'src/statuses/entities/status.entity';
-import { Role } from 'src/roles/entities/role.entity';
+import { Roles } from 'src/roles/entities/role.entity';
 import { SocialInterface } from 'src/social/interfaces/social.interface';
 import { UsersService } from 'src/modules/users/users.service';
 import { ForgotService } from 'src/forgot/forgot.service';
@@ -38,9 +38,11 @@ export class AuthService {
     if (
       !user ||
       (user &&
-        !(onlyAdmin ? [RoleEnum.admin] : [RoleEnum.user]).includes(
-          user.role.id,
-        ))
+        !(onlyAdmin
+          ? RoleEnum.admin
+          : [RoleEnum.customer, RoleEnum.manager, RoleEnum.sales].includes(
+              user.role.id,
+            )))
     ) {
       throw new HttpException(
         {
@@ -113,8 +115,8 @@ export class AuthService {
     } else if (userByEmail) {
       user = userByEmail;
     } else {
-      const role = plainToClass(Role, {
-        id: RoleEnum.user,
+      const role = plainToClass(Roles, {
+        id: RoleEnum.customer || RoleEnum.manager || RoleEnum.sales,
       });
       const status = plainToClass(Status, {
         id: StatusEnum.active,
@@ -152,12 +154,23 @@ export class AuthService {
       .update(randomStringGenerator())
       .digest('hex');
 
+    // Get the role id from the provided role object
+    const roleId = dto.role?.id;
+
+    console.log('ROle id recieved: ', roleId);
+    // Set the default role to 'customer' if no valid roleId is provided
+    const roleType =
+      roleId &&
+      [RoleEnum.customer, RoleEnum.manager, RoleEnum.sales].includes(roleId)
+        ? roleId
+        : RoleEnum.customer;
+
     const user = await this.usersService.create({
       ...dto,
       email: dto.email,
       role: {
-        id: RoleEnum.user,
-      } as Role,
+        id: roleType,
+      } as Roles,
       status: {
         id: StatusEnum.inactive,
       } as Status,

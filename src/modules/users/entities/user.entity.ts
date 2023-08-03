@@ -17,7 +17,7 @@ import { AuthProvidersEnum } from 'src/auth/auth-providers.enum';
 import { Exclude, Expose } from 'class-transformer';
 import { FileEntity } from '../../../files/entities/file.entity';
 import { Status } from '../../../statuses/entities/status.entity';
-import { Role } from '../../../roles/entities/role.entity';
+import { Roles } from '../../../roles/entities/role.entity';
 
 @Entity()
 export class User extends EntityHelper {
@@ -71,10 +71,10 @@ export class User extends EntityHelper {
   })
   photo?: FileEntity | null;
 
-  @ManyToOne(() => Role, {
+  @ManyToOne(() => Roles, {
     eager: true,
   })
-  role?: Role | null;
+  role: Roles;
 
   @ManyToOne(() => Status, {
     eager: true,

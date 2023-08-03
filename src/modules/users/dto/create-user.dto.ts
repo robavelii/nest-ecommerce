@@ -7,7 +7,7 @@ import {
   MinLength,
   Validate,
 } from 'class-validator';
-import { Role } from '../../../roles/entities/role.entity';
+import { Roles } from '../../../roles/entities/role.entity';
 import { Status } from '../../../statuses/entities/status.entity';
 import { IsNotExist } from '../../../utils/validators/is-not-exists.validator';
 import { FileEntity } from '../../../files/entities/file.entity';
@@ -46,11 +46,11 @@ export class CreateUserDto {
   })
   photo?: FileEntity | null;
 
-  @ApiProperty({ type: Role })
+  @ApiProperty({ type: Roles })
   @Validate(IsExist, ['Role', 'id'], {
     message: 'roleNotExists',
   })
-  role?: Role | null;
+  role: Roles;
 
   @ApiProperty({ type: Status })
   @Validate(IsExist, ['Status', 'id'], {

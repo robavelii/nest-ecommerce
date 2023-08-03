@@ -27,7 +27,6 @@ import { MailConfigService } from './mail/mail-config.service';
 import { ForgotModule } from './forgot/forgot.module';
 import { MailModule } from './mail/mail.module';
 import { HomeModule } from './home/home.module';
-import { ModulesModule } from './products/modules/modules.module';
 import { ProductsModule } from './modules/products/products.module';
 import { OrdersModule } from './modules/orders/orders.module';
 
@@ -41,10 +40,10 @@ import { OrdersModule } from './modules/orders/orders.module';
         appConfig,
         mailConfig,
         fileConfig,
-        facebookConfig,
-        googleConfig,
-        twitterConfig,
-        appleConfig,
+        // facebookConfig,
+        // googleConfig,
+        // twitterConfig,
+        // appleConfig,
       ],
       envFilePath: ['.env'],
     }),
@@ -78,14 +77,14 @@ import { OrdersModule } from './modules/orders/orders.module';
     UsersModule,
     FilesModule,
     AuthModule,
-    AuthFacebookModule,
-    AuthGoogleModule,
-    AuthTwitterModule,
-    AuthAppleModule,
+    // AuthFacebookModule,
+    // AuthGoogleModule,
+    // AuthTwitterModule,
+    // AuthAppleModule,
     ForgotModule,
     MailModule,
     HomeModule,
-    ModulesModule,
+    OrdersModule,
     ProductsModule,
     OrdersModule,
   ],

@@ -26,7 +26,7 @@ export class UserSeedService {
         this.repository.create({
           firstName: 'Super',
           lastName: 'Admin',
-          email: 'admin@example.com',
+          email: 'admin@ecom.com',
           password: 'secret',
           role: {
             id: RoleEnum.admin,
@@ -40,24 +40,76 @@ export class UserSeedService {
       );
     }
 
-    const countUser = await this.repository.count({
+    const countCustomer = await this.repository.count({
       where: {
         role: {
-          id: RoleEnum.user,
+          id: RoleEnum.customer,
         },
       },
     });
 
-    if (countUser === 0) {
+    if (countCustomer === 0) {
       await this.repository.save(
         this.repository.create({
-          firstName: 'John',
-          lastName: 'Doe',
-          email: 'john.doe@example.com',
+          firstName: 'Customer',
+          lastName: 'One',
+          email: 'customer@ecom.com',
           password: 'secret',
           role: {
-            id: RoleEnum.user,
-            name: 'Admin',
+            id: RoleEnum.customer,
+            name: 'Customer',
+          },
+          status: {
+            id: StatusEnum.active,
+            name: 'Active',
+          },
+        }),
+      );
+    }
+    const countManager = await this.repository.count({
+      where: {
+        role: {
+          id: RoleEnum.manager,
+        },
+      },
+    });
+
+    if (countManager === 0) {
+      await this.repository.save(
+        this.repository.create({
+          firstName: 'Manager',
+          lastName: 'One',
+          email: 'manager@ecom.com',
+          password: 'secret',
+          role: {
+            id: RoleEnum.manager,
+            name: 'Manager',
+          },
+          status: {
+            id: StatusEnum.active,
+            name: 'Active',
+          },
+        }),
+      );
+    }
+    const countSales = await this.repository.count({
+      where: {
+        role: {
+          id: RoleEnum.sales,
+        },
+      },
+    });
+
+    if (countSales === 0) {
+      await this.repository.save(
+        this.repository.create({
+          firstName: 'Sales',
+          lastName: 'One',
+          email: 'sales@ecom.com',
+          password: 'secret',
+          role: {
+            id: RoleEnum.sales,
+            name: 'Sales',
           },
           status: {
             id: StatusEnum.active,
