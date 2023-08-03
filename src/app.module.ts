@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Module } from '@nestjs/common';
 import * as path from 'path';
 import { MailerModule } from '@nestjs-modules/mailer';
