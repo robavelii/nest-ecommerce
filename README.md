@@ -31,7 +31,7 @@ docker compose logs
 ## Comfortable development
 
 ```bash
-git clone --depth 1 https://github.com/robavelii/nestjs-starter.git my-app
+git clone --depth 1 https://github.com/robavelii/nest-ecommerce.git my-app
 cd my-app/
 cp env-example .env
 ```
