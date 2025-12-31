@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+/.yarn/cache
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+
+# Build
+dist/
+build/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Misc
+*.pem
+.cache/
